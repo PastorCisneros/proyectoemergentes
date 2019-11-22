@@ -1,6 +1,6 @@
 from pyknow import *
 
-class animales(KnowledgeEngine):
+class fallas(KnowledgeEngine):
 
     @Rule(Fact(falla = 'falla' << L("falla")))
     def a_1 (self, animal):
@@ -29,7 +29,7 @@ class animales(KnowledgeEngine):
         self.declare(Fact(falla = "modo estandar", automovil = "s", automatico = "s", modoestandar = "s",manejarestandar ='s'))
 
     @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("s"), modoestandar = L("s"), manejarestandar = L("n")))
-    def a_112(self):
+    def a_1113(self):
         print("CAMBIA AUTOMATICO")
         self.declare(Fact(falla = "cambio automatico", automovil = "s", automatico = "s", modoestandar = "s",manejarestandar ='n'))
 ################################################################3
@@ -37,9 +37,25 @@ class animales(KnowledgeEngine):
     def a_1121(self):
         print("Es un automovil estandar")
         self.declare(Fact(falla = "falla", automovil = "s", automatico = "n", manejar = input("¿Sabes manejar? (s/n): ")))
+    
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("n")))
+    def a_1122(self):
+        print("Es una automovil estandar y no sabe manejar pero vas aprender")
+        self.declare(Fact(falla = "falla", automovil = "s", automatico = "n", manejar = ("n"), aprender = input("¿Quieres aprender? (s/n): ")))
+    
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("n"),aprender=L("s")))
+    def a_1123(self):
+        print("BUSCAR CLASES")
+        self.declare(Fact(falla = "buscar", automovil = "s", automatico = "n", manejar = ("n"), aprender = ("s")))
+    
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("n"),aprender=L("n")))
+    def a_1124(self):
+        print("POSIBILIDAD DE ACCIDENTE")
+        self.declare(Fact(falla = "accidente", automovil = "s", automatico = "n", manejar = ("n"), aprender = ("n")))
+    
 
     @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s")))
-    def a_1122(self):
+    def a_1125(self):
         print("Es una automovil estandar y no sabe manejar")
         self.declare(Fact(falla = "falla", automovil = "s", automatico = "n", manejar = ("s"), licencia = input("¿Tienes Licencia? (s/n): ")))
 
@@ -49,546 +65,240 @@ class animales(KnowledgeEngine):
         self.declare(Fact(falla = "sacar licencia", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("n"), sacarlicencia = input("¿ Sacaras tu Licencia? (s/n): ")))
 
     @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("n"),sacarlicencia = L("s")))
-    def a_11221(self):
+    def a_11223(self):
         print("OBTENER CITA")
         self.declare(Fact(falla = "obtener cita", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("n"), sacarlicencia = ("s")))
 
     @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("n"),sacarlicencia = L("s")))
-    def a_11221(self):
+    def a_1122333333(self):
         print("OBTENER MULTA")
         self.declare(Fact(falla = "obtener multa", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("n"), sacarlicencia = ("n")))
 #################################################
     @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s")))
-    def a_11222(self):
+    def a_112211112(self):
         print("Sabes manejar automovil modo estandar")
         self.declare(Fact(falla = "falla", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = input("¿ Llave en buen estado? (s/n): ")))
 
     @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s")))
-    def a_11222(self):
-        print("Sabes manejar automovil modo estandar")
+    def a_112212122(self):
+        print("Sabes manejar automovil modo estandar y tienes llave")
         self.declare(Fact(falla = "falla", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = input("¿Tiene gasolina?s/n ")))   
 
-   @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("n")))
-    def a_11222(self):
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"), gasolina=L("n")))
+    def a_112211111112(self):
         print("CARGAR GASOLINA")
         self.declare(Fact(falla = "cargar gasolina", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), cargogasolina = input("¿Cargo gasolina?s/n ")))
 
-     @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("n"),cargogasolina=L("s")))
-    def a_11222(self):
-        print("CARGAR GASOLINA")
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("n"),cargogasolina=L("s")))
+    def a_1134222(self):
+        print("Cargo gasolina completa")
         self.declare(Fact(falla = "falla", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), cargogasolina = ("s"), arranca=input("¿Arranca s/n?")))
 
     @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("n"),cargogasolina=L("s"), arranca=L("n")))
-    def a_11222(self):
+    def a_1122342(self):
         print("GASOLINA ERRONEA")
         self.declare(Fact(falla = "gasolina erronea", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), cargogasolina = ("s"), arranca =("n")))
 
     @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("n"),cargogasolina=L("s"), arranca=L("s")))
-    def a_11222(self):
+    def a_1122223(self):
         print("GASOLINA CORRECTA")
         self.declare(Fact(falla = "gasolina erronea", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), cargogasolina = ("s"), arranca =("s")))
 
-   @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("n"),cargogasolina=L("s"), arranca=L("n")))
-    def a_11222(self):
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("n"),cargogasolina=L("s"), arranca=L("n")))
+    def a_1122224(self):
         print("GASOLINA ERRONEA")
         self.declare(Fact(falla = "gasolina erronea", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), cargogasolina = ("s"), arranca =("n"), gasolinaerronea=input("¿Cargo de gasolina erronea: s")))
 
-     @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("n"),cargogasolina=L("s"), arranca=L("n"), gasolinaerronea=L("s")))
-    def a_11222(self):
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("n"),cargogasolina=L("s"), arranca=L("n"), gasolinaerronea=L("s")))
+    def a_1122225(self):
         print("CAMBIO DE TANQUE DE COMBUSTIBLE")
         self.declare(Fact(falla = "cambio tanque", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), cargogasolina = ("s"), arranca =("n"), gasolinaerronea=("s")))
 ###########################################################################
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo =L("s"), tenazas = L("s")))
-    def a_121211(self):
-        print("Es un crustaceo con tenazas")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "s", tenazas = "s", grande = input("¿Es un crustaceo con tenazas grande? (s/n): ")))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("n")))
+    def a_1122226(self):
+        print("IR CON EL CERRAJERO")
+        self.declare(Fact(falla = "ir cerrejero", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), cerrajeroabierto = input("¿Esta abierto con el cerrajero? ")))   
 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("s"), tenazas = L("s"), grande = L("s")))
-    def a_1212111(self):
-        print("El animal que busca es una LANGOSTA")
-        self.declare(Fact(animal = "langosta", extinto = "n", marino = "s", molusco = "n", crustaceo = "s", tenazas = "s", grande = "s"))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("n"), cerrajeroabierto=L("s")))
+    def a_1122227(self):
+        print("ARREGLAR LLAVE")
+        self.declare(Fact(falla = "arreglar llave", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("n"), cerrajeroabierto = ("s")))   
 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("s"), tenazas = L("s"), grande = L("n")))
-    def a_1212112(self):
-        print("Es un crustaceo con tenazas y no es grande")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "s", tenazas = "s", grande = "n", dos = input("¿su habitat es en agua dulce o salada? (d/s): ")))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("n"), cerrajeroabierto=L("n")))
+    def a_1122228(self):
+        print("No tienes llave en buen estado para manejar")
+        self.declare(Fact(falla = "falla", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("n"), cerrajeroabierto = ("n"),llaveemer=input("¿ tienes llave de emergencia?:s/n")))   
 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("s"), tenazas = L("s"), grande = L("n"), dos = L("d")))
-    def a_12121121(self):
-        print("El animal que busca es una JAIBA")
-        self.declare(Fact(animal = "jaiba", extinto = "n", marino = "s", molusco = "n", crustaceo = "s", tenazas = "s", grande = "n", dos = "d"))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("n"), cerrajeroabierto=L("n"),llaveemer=L("s")))
+    def a_1122229(self):
+        print("ARRANCA CARRO")
+        self.declare(Fact(falla = "arranca", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("n"), cerrajeroabierto = ("n"),llaveemer=("s")))   
 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("s"), tenazas = L("s"), grande = L("n"), dos = L("s")))
-    def a_121211212(self):
-        print("El animal que busca es un CANGREJO")
-        self.declare(Fact(animal = "cangrejo", extinto = "n", marino = "s", molusco = "n", crustaceo = "s", tenazas = "s", grande = "n", dos = "s"))
-#NO CRUSTACEO
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n")))
-    def a_12122(self):
-        print("Es un animal marino, pero no es crustaceo")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = input("¿Es un pez o un mamifero? (p/m): ")))
-#->PEZ
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p")))
-    def a_121221(self):
-        print("Es un animal marino y es un pez")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = input("¿Es un pez grande? (s/n): ")))
-#->PEZ GRANDE
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("s")))
-    def a_1212211(self):
-        print("Es un pez grande")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "s", tiburon = input("¿Es una especie de tiburon? (s/n): ")))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"), cerrajeroabierto=L("n"),llaveemer=L("n")))
+    def a_1122230(self):
+        print("IR A LA AGENCIA")
+        self.declare(Fact(falla = "ir a la agencia", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), cerrajeroabierto = ("n"),llaveemer=("n")))   
+####################################################################################
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s")))
+    def a_1122212(self):
+        print("Tiene gasolina y su llave es la correcta")
+        self.declare(Fact(falla = "falla", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = input("¿Tiene agua?s/n ")))
+
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s"),agua=L("n")))
+    def a_1122213(self):
+        print("SE VA A CALENTAR")
+        self.declare(Fact(falla = "calento", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("n")))
+
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s"),agua=L("s")))
+    def a_1122214(self):
+        print("Tiene gasolina, agua y su llave es la correcta")
+        self.declare(Fact(falla = "falla", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("s"), aceite=input("¿Tiene aceite?")))
     
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("s"), tiburon = L("s")))
-    def a_12122111(self):
-        print("Es una especie de tiburon")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "s", tiburon = "s", atacan = input("¿El animal ataca para alimentarse? (s/n): ")))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s"),agua=L("s"),aceite=L("n")))
+    def a_1122215(self):
+        print("SE VA A DESVIELAR")
+        self.declare(Fact(falla = "desvielar", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("s"), aceite=("n")))
     
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("s"), tiburon = L("n")))
-    def a_12122112(self):
-        print("El animal que busca es una MANTARAYA")
-        self.declare(Fact(animal = "mantaraya", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "s", tiburon = "n"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("s"), tiburon = L("s"), atacan = L("s")))
-    def a_121221111(self):
-        print("El animal que busca es un TIBURON BLANCO")
-        self.declare(Fact(animal = "tibblanco", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "s", tiburon = "s", atacan = "s"))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s"),agua=L("s"),aceite=L("s")))
+    def a_1122216(self):
+        print("Tiene gasolina, agua y su llave es la correcta")
+        self.declare(Fact(falla = "falla", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("s"), aceite=("s"),luces=input("¿Funcionan las luces:s/n?")))
     
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("s"), tiburon = L("s"), atacan = L("n")))
-    def a_121221112(self):
-        print("El animal que busca es un TIBURON BALLENA")
-        self.declare(Fact(animal = "tibballena", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "s", tiburon = "s", atacan = "n"))
-#->PEZ NO GRANDE    
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n")))
-    def a_1212212(self):
-        print("Es un pez, pero no es grande")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = input("¿Se vende como comida enlatada? (s/n): ")))
-#->->ENLATADA
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n"), enlatado = L("s")))
-    def a_12122121(self):
-        print("Es un pez que se vende en comida enlatada")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = "s", grandee = input("¿Es grande? (s/n): ")))
 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n"), enlatado = L("s"), grandee = L("s")))
-    def a_121221211(self):
-        print("El animal que busca es un ATUN")
-        self.declare(Fact(animal = "atun", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = "s", grandee = "s"))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s"),agua=L("s"),aceite=L("s"),luces=L("n")))
+    def a_1122217(self):
+        print("VERIFICAR CARGA DE BATERIA")
+        self.declare(Fact(falla = "verificar carga", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("s"), aceite=("s"),luces=("n"),carga=input("¿tiene carga?:s/n")))
 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n"), enlatado = L("s"), grandee = L("n")))
-    def a_121221212(self):
-        print("No es un pez grande y se vende enlatado")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = "s", grandee = "n", long = input("¿Tiene menos de 30cm de longitud? (s/n): ")))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s"),agua=L("s"),aceite=L("s"),luces=L("n"),carga=L("n")))
+    def a_1122218(self):
+        print("LLEVAR AL ELECTRICO")
+        self.declare(Fact(falla = "llevar electrico", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("s"), aceite=("s"),luces=("n"),carga=("n")))
 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n"), enlatado = L("s"), grandee = L("n"), long = L("s")))
-    def a_1212212121(self):
-        print("El animal que busca es una SARDINA")
-        self.declare(Fact(animal = "sardina", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = "s", grandee = "n", long = "s"))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s"),agua=L("s"),aceite=L("s"),luces=L("n"),carga=L("s")))
+    def a_1122219(self):
+        print("CAMBIAR PILA")
+        self.declare(Fact(falla = "cambiar pila", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("s"), aceite=("s"),luces=("n"),carga=("s")))
 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n"), enlatado = L("s"), grandee = L("n"), long = L("n")))
-    def a_1212212122(self):
-        print("Es un pez que se vende enlatado y mayor a 30cm de longitud")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = "s", grandee = "n", long = "n", aletas = input("¿Tiene aletas cortas o largas? (c/l): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n"), enlatado = L("s"), grandee = L("n"), long = L("n"), aletas = L("c")))
-    def a_12122121221(self):
-        print("El animal que busca es una TRUCHA")
-        self.declare(Fact(animal = "trucha", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = "s", grandee = "n", long = "n", aletas = "c"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n"), enlatado = L("s"), grandee = L("n"), long = L("n"), aletas = L("l")))
-    def a_12122121222(self):
-        print("El animal que busca es un SALMON")
-        self.declare(Fact(animal = "salmon", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = "s", grandee = "n", long = "n", aletas = "l"))
-#->->NO ENLATADA
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n"), enlatado = L("n")))
-    def a_12122122(self):
-        print("Es un pez y no se vende como enlatado")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = "n", foa = input("¿Su nombre se relaciona con una fiesta o con un arma? (f/a): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n"), enlatado = L("n"), foa = L("f")))
-    def a_121221221(self):
-        print("Es un pez y su nombre se relaciona a una fiesta")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = "n", foa = "f", infla = input("¿Se infla? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n"), enlatado = L("n"), foa = L("f"), infla = L("s")))
-    def a_1212212211(self):
-        print("El animal que busca es un PEZ GLOBO")
-        self.declare(Fact(animal = "pezglobo", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = "n", foa = "f", infla = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n"), enlatado = L("n"), foa = L("f"), infla = L("n")))
-    def a_1212212212(self):
-        print("El animal que busca es un PEZ PAYASO")
-        self.declare(Fact(animal = "pezpayaso", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = "n", foa = "f", infla = "n"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n"), enlatado = L("n"), foa = L("a")))
-    def a_121221222(self):
-        print("Es un pez y su nombre se relaciona a una arma")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = "n", foa = "a", boca = input("¿Su boca es muy picuda y fina? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n"), enlatado = L("n"), foa = L("a"), boca = L("s")))
-    def a_1212212221(self):
-        print("El animal que busca es un PEZ ESPADA")
-        self.declare(Fact(animal = "pezespada", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = "n", foa = "a", boca = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("p"), grande = L("n"), enlatado = L("n"), foa = L("a"), boca = L("n")))
-    def a_1212212222(self):
-        print("El animal que busca es un PEZ SIERRA")
-        self.declare(Fact(animal = "pezsierra", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "p", grande = "n", enlatado = "n", foa = "a", boca = "n"))
-#MAMIFEROS MARINOS
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("m")))
-    def a_121222(self):
-        print("Es un animal marino y es mamifero")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "m", gigante = input("¿Es gigante? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom= L("m"), gigante = L("s")))
-    def a_1212221(self):
-        print("El animal que busca es una BALLENA")
-        self.declare(Fact(animal = "ballena", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "m", gigante = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom = L("m"), gigante = L("n")))
-    def a_1212222(self):
-        print("Es un animal marino mamifero, pero no es gigante")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "m", gigante = "n", color = input("¿Es blanco y negro? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom = L("m"), gigante = L("n"), color =("s")))
-    def a_12122221(self):
-        print("El animal que busca es una ORCA")
-        self.declare(Fact(animal = "orca", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "m", gigante = "n", color = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom = L("m"), gigante = L("n"), color =("n")))
-    def a_12122222(self):
-        print("Es un animal marino mamifero, pero no es blanco y negro")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "m", gigante = "n", color = "n", inteligente = input("¿Se considera un animal bastante inteligente? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom = L("m"), gigante = L("n"), color =("n"), inteligente = L("s")))
-    def a_121222221(self):
-        print("El animal que busca es un DELFIN")
-        self.declare(Fact(animal = "delfin", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "m", gigante = "n", color = "n", inteligente = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom = L("m"), gigante = L("n"), color =("n"), inteligente = L("n")))
-    def a_121222222(self):
-        print("Es un animal marino mamifero, pero no se considera tan inteligente")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "m", gigante = "n", color = "n", inteligente ="n", colmillos = input("¿Tiene colmillos? (s/n): ")))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s"),agua=L("s"),aceite=L("s"),luces=L("s")))
+    def a_1122220(self):
+        print("LLEVAR AL ELECTRICO")
+        self.declare(Fact(falla = "llevar electrico", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("s"), aceite=("s"),luces=("s"),carretera=input("carretera en buen estado?:s/n")))
     
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom = L("m"), gigante = L("n"), color =("n"), inteligente = L("n"), colmillos = L("s")))
-    def a_1212222221(self):
-        print("El animal que busca es una MORSA")
-        self.declare(Fact(animal = "morsa", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "m", gigante = "n", color = "n", inteligente ="n", colmillos = "s"))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s"),agua=L("s"),aceite=L("s"),luces=L("s"),carretera=L("n")))
+    def a_1122234(self):
+        print("CAMBIAR RUTA")
+        self.declare(Fact(falla = "cambiar ruta", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("s"), aceite=("s"),luces=("s"),carretera=("n")))
+
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s"),agua=L("s"),aceite=L("s"),luces=L("s"),carretera=L("s")))
+    def a_1122235(self):
+        print("Todo va muy bien hasta ahora")
+        self.declare(Fact(falla = "falla", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("s"), aceite=("s"),luces=("s"),carretera=("s"),oscuro=("esta oscuro?:s/n")))
     
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("s"), molusco = L("n"), crustaceo = L("n"), pom = L("m"), gigante = L("n"), color =("n"), inteligente = L("n"), colmillos = L("n")))
-    def a_1212222222(self):
-        print("El animal que busca es una FOCA")
-        self.declare(Fact(animal = "foca", extinto = "n", marino = "s", molusco = "n", crustaceo = "n", pom = "m", gigante = "n", color = "n", inteligente ="n", colmillos = "n"))
-#NO MARINOS
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n")))
-    def a_122(self):
-        print("No es un animal marino")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = input("¿Tiene plumas y pico? (s/n): ")))
-#AVES
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s")))
-    def a_1221(self):
-        print("Es un ave")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "s", garras = input("¿Posee pico afilado y patas con grandes garras? (s/n): ")))
-#GARRAS
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("s")))
-    def a_12211(self):
-        print("Es un ave con pico afilado y patas con grandes garras")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "s", garras = "s", valto = input("¿Vuela a grandes alturas? (s/n): ")))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s"),agua=L("s"),aceite=L("s"),luces=L("s"),carretera=L("s"),oscuro=L("s")))
+    def a_1122236(self):
+        print("PUEDES TENER UN ACCIDENTE")
+        self.declare(Fact(falla = "accidente", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("s"), aceite=("s"),luces=("s"),carretera=("s"),oscuro=("s"),ninos=input("Tienes niños adelante ?s/n")))
 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("s"), valto = L("s")))
-    def a_122111(self):
-        print("Es un ave con pico afilado, patas con grandes garras y vuela a grandes alturas")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "s", garras = "s", valto = "s", cola = input("¿Tiene una cola esbelta? (s/n): ")))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s"),agua=L("s"),aceite=L("s"),luces=L("s"),carretera=L("s"),oscuro=L("s"),ninos=L("s")))
+    def a_1122237(self):
+        print("TENDRAS MULTA")
+        self.declare(Fact(falla = "multa", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("s"), aceite=("s"),luces=("s"),carretera=("s"),oscuro=("s"),ninos=("s")))
 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("s"), valto = L("s"), cola = L("s")))
-    def a_1221111(self):
-        print("El animal que busca es un HALCON")
-        self.declare(Fact(animal = "halcon", extinto = "n", marino = "n", ave = "s", garras = "s", valto = "s", cola = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("s"), valto = L("s"), cola = L("n")))
-    def a_1221112(self):
-        print("El animal que busca es una AGUILA ")
-        self.declare(Fact(animal = "aguila", extinto = "n", marino = "n", ave = "s", garras = "s", valto = "s", cola = "n"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("s"), valto = L("n")))
-    def a_122112(self):
-        print("Es un ave con pico afilado y patas con grandes garras pero no vuela tan alto")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "s", garras = "s", valto = "n", plumas = input("¿Posee plumas alzadas en la cabeza? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("s"), valto = L("n"), plumas = L("s")))
-    def a_1221121(self):
-        print("El animal que busca es un BUHO")
-        self.declare(Fact(animal = "buho", extinto = "n", marino = "n", ave = "s", garras = "s", valto = "n", plumas = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("s"), valto = L("n"), plumas = L("n")))
-    def a_1221122(self):
-        print("El animal que busca es una LECHUZA ")
-        self.declare(Fact(animal = "lechuza", extinto = "n", marino = "n", ave = "s", garras = "s", valto = "n", plumas = "n"))
-#NO GARRAS
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n")))
-    def a_12212(self):
-        print("No es un ave con pico afilado ni con grandes garras")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "s", garras = "n", pico = input("¿Tiene el pico aplanado? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n"), pico = L("s")))
-    def a_122121(self):
-        print("Es un ave con pico aplanado")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "s", garras = "n", pico = "s", cuello = input("¿Posee el cuello demasiaod largo? (s/n): ")))
- 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n"), pico = L("s"), cuello = L("s")))
-    def a_1221211(self):
-        print("El animal que busca es un CISNE")
-        self.declare(Fact(animal = "cisne", extinto = "n", marino = "n", ave = "s", garras = "n", pico = "s", cuello ="s"))
- 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n"), pico = L("s"), cuello = L("n")))
-    def a_1221212(self):
-        print("No tiene el cuello demasiado largo")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "s", garras = "n", pico = "s", cuello = "n", color = input("¿Puede llegar a ser amarillo? (s/n): ")))
- 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n"), pico = L("s"), cuello = L("n"), color = L("s")))
-    def a_12212121(self):
-        print("El animal que busca es un PATO")
-        self.declare(Fact(animal = "pato", extinto = "n", marino = "n", ave = "s", garras = "n", pico = "s", cuello = "n", color = "s"))
- 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n"), pico = L("s"), cuello = L("n"), color = L("n")))
-    def a_12212122(self):
-        print("El animal que busca es un GANSO")
-        self.declare(Fact(animal = "pato", extinto = "n", marino = "n", ave = "s", garras = "n", pico = "s", cuello = "n", color = "n"))
-#NO pico aplanado
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n"), pico = L("n")))
-    def a_122122(self):
-        print("Es un ave y no tiene el pico aplanado")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "s", garras = "n", pico = "n", tamano = input("¿Es grande o pequeño? (g/p): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n"), pico = L("n"), tamano = L("g")))
-    def a_1221221(self):
-        print("Es un ave corredora")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "s", garras = "n", pico = "n", tamano = "g", tod = input("¿Posee tres o dos dedos en las patas? (t/d): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n"), pico = L("n"), tamano = L("g"), tod = L("t")))
-    def a_12212211(self):
-        print("Eel animal que busca es un NANDU")
-        self.declare(Fact(animal = "nandu", extinto = "n", marino = "n", ave = "s", garras = "n", pico = "n", tamano = "g", tod = "t"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n"), pico = L("n"), tamano = L("g"), tod = L("d")))
-    def a_12212212(self):
-        print("Eel animal que busca es un AVESTRUZ")
-        self.declare(Fact(animal = "avestruz", extinto = "n", marino = "n", ave = "s", garras = "n", pico = "n", tamano = "g", tod = "d"))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s"),agua=L("s"),aceite=L("s"),luces=L("s"),carretera=L("s"),oscuro=L("s"),ninos=L("n")))
+    def a_1122238(self):
+        print("ESTADO PERFECTO")
+        self.declare(Fact(falla = "perfecto", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("s"), aceite=("s"),luces=("s"),carretera=("s"),oscuro=("s"),ninos=("n")))
     
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n"), pico = L("n"), tamano = L("p")))
-    def a_1221222(self):
-        print("Es un ave pequeña")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "s", garras = "n", pico = "n", tamano = "p", picol = input("¿Tiene un pico largo para succionar? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n"), pico = L("n"), tamano = L("p"), picol = L("s")))
-    def a_12212221(self):
-        print("El animal que busca es un COLIBRI")
-        self.declare(Fact(animal = "colibri", extinto = "n", marino = "n", ave = "s", garras = "n", pico = "n", tamano = "p", picol = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n"), pico = L("n"), tamano = L("p"), picol = L("n")))
-    def a_12212222(self):
-        print("Es un pajaron pequeño pero no tiene pico largo")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "s", garras = "n", pico = "n", tamano = "p", picol = "n", color = input("¿Es colorido? (s/n): ")))
+    @Rule(Fact(falla = L("falla"), automovil = L("s"), automatico = L("n"), manejar = L("s"), licencia = L("s"),estadollave =L("s"),gasolina=L("s"),agua=L("s"),aceite=L("s"),luces=L("s"),carretera=L("s"),oscuro=L("n")))
+    def a_1122239(self):
+        print("SIN PROBLEMAS")
+        self.declare(Fact(falla = "problemasout", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("s"), aceite=("s"),luces=("s"),carretera=("s"),oscuro=("n")))
+#####################AVION 
+    @Rule(Fact(falla = L("falla"), automovil = L("n")))
+    def a_1(self):
+        print("Es un avion")
+        self.declare(Fact(falla = "falla", automovil = "n", nuevo = input("¿Es un avion nuevo? (s/n): ")))
     
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n"), pico = L("n"), tamano = L("p"), picol = L("n"), color = L("s")))
-    def a_122122221(self):
-        print("El animal que busca es un PAJARO CARBONERO")
-        self.declare(Fact(animal = "carbonero", extinto = "n", marino = "n", ave = "s", garras = "n", pico = "n", tamano = "p", picol = "n", color = "s"))
+
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("n")))
+    def a_2(self):
+        print("Es un avion viejo")
+        self.declare(Fact(falla = "falla", automovil = "n", nuevo="n", mantenimiento = input("¿tiene mantenimiento reciente? (s/n): ")))
+
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("n"), mantenimiento=L("s")))
+    def a_3(self):
+        print("PUEDE DESPEJAR")
+        self.declare(Fact(falla = "despejar", automovil = "n", nuevo="n", mantenimiento = ("s")))
+
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("n"),mantenimiento=L("n")))
+    def a_4(self):
+        print("Es un avion viejo")
+        self.declare(Fact(falla = "falla", automovil = "n", nuevo="n", mantenimiento="n", estabilizadores = input("¿Los estabilizadores funcionan? (s/n): ")))
+
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("n"),mantenimiento=L("n"),estabilizadores=L("n")))
+    def a_5(self):
+        print("LIMPIA LOS ESTABILIZADORES")
+        self.declare(Fact(falla = "limpia", automovil = "n", nuevo="n", mantenimiento="n", estabilizadores = ("n")))
+
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("n"),mantenimiento=L("n"),estabilizadores=L("s")))
+    def a_6(self):
+        print("Es un avion viejo sin mantenimiento")
+        self.declare(Fact(falla = "falla", automovil = "n", nuevo="n", mantenimiento="n", estabilizadores="s", combustible = input("¿Tiene combustible? (s/n): ")))
+
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("n"),mantenimiento=L("n"),estabilizadores=L("s"),combustible=L("n")))
+    def a_8(self):
+        print("MAMAPERO CON PROBLEMAS")
+        self.declare(Fact(falla = "falla", automovil = "n", nuevo="n", mantenimiento="n", estabilizadores="s", combustible = ("n")))
+
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("n"),mantenimiento=L("n"),estabilizadores=L("s"),combustible=L("s")))
+    def a_9(self):
+        print("Es un avion viejo sin mantenimiento")
+        self.declare(Fact(falla = "falla", automovil = "n", nuevo="n", mantenimiento="n", estabilizadores="s", combustible = ("s"),sonido = input("¿Hace sonidos anormales? (s/n): ")))
+
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("n"),mantenimiento=L("n"),estabilizadores=L("s"),combustible=L("s"),sonido=L("n")))
+    def a_10(self):
+        print("PUEDE DESPEJAR")
+        self.declare(Fact(falla = "despejar", automovil = "n", nuevo="n", mantenimiento="n", estabilizadores="s", combustible = ("s"),sonido = ("n")))
+
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("n"),mantenimiento=L("n"),estabilizadores=L("s"),combustible=L("s"),sonidoL=("s")))
+    def a_13(self):
+        print("Es un avion viejo sin mantenimiento que hace sonidos")
+        self.declare(Fact(falla = "falla", automovil = "n", nuevo="n", mantenimiento="n", estabilizadores="s", combustible = ("s"),sonido = ("s"), frente = input("¿En el frente? (s/n): ")))
+
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("n"),mantenimiento=L("n"),estabilizadores=L("s"),combustible=L("s"),sonidoL=("s"),frente=L("s")))
+    def a_14(self):
+        print("TIMON DE DIRECCION CON PROBLEMAS")
+        self.declare(Fact(falla = "timon", automovil = "n", nuevo="n", mantenimiento="n", estabilizadores="s", combustible = ("s"),sonido = ("s"), frente="s"))
+
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("n"),mantenimiento=L("n"),estabilizadores=L("s"),combustible=L("s"),sonidoL=("s"),frente=L("n")))
+    def a_15(self):
+        print("CONO Y HELICE CON PROBLEMAS")
+        self.declare(Fact(falla = "helice", automovil = "n", nuevo="n", mantenimiento="n", estabilizadores="s", combustible = ("s"),sonido = ("s"), frente="n"))
+
+
+#########################################
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("s")))
+    def a_1101(self):
+        print("Es un avion nuevo")
+        self.declare(Fact(falla = "falla", automovil = "n", nuevo="s", pilotos = input("¿tiene pilotos expertos? (s/n): ")))
     
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("s"), garras = L("n"), pico = L("n"), tamano = L("p"), picol = L("n"), color = L("n")))
-    def a_122122222(self):
-        print("El animal que busca es un PAJARO GORRION")
-        self.declare(Fact(animal = "gorrion", extinto = "n", marino = "n", ave = "s", garras = "n", pico = "n", tamano = "p", picol = "n", color = "n"))
- #NO AVES   
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n")))
-    def a_1222(self):
-        print("No es un ave")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = input("¿Anda, nada y repta? (s/n): ")))
-#REPTILES
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s")))
-    def a_12221(self):
-        print("Es un reptil")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = input("¿Posee un caparazon? (s/n): ")))
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("s"),pilotos=L("n")))
+    def a_1102(self):
+        print("PROTOCOLO A1")
+        self.declare(Fact(falla = "protocolo", automovil = "n", nuevo="s", pilotos = ("n")))
 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s"), caparazon = L("s")))
-    def a_122211(self):
-        print("El animal que busca es una TORTUGA")
-        self.declare(Fact(animal = "tortuga", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = "s"))
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("s"),pilotos=L("s")))
+    def a_1103(self):
+        print("Es un avion nuevo con pilotos capacitados")
+        self.declare(Fact(falla = "falla", automovil = "n", nuevo="s", pilotos="s",meteorologia = input("meteorologia buena? (s/n): ")))
 
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s"), caparazon = L("n")))
-    def a_122212(self):
-        print("El reptil no tiene caparazon")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = "n", patas = input("¿Tiene patas? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s"), caparazon = L("n"), patas = L("s")))
-    def a_1222121(self):
-        print("El reptil tiene patas")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = "n", patas = "s", grande = input("¿Es grande? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s"), caparazon = L("n"), patas = L("s"), grande = L("s")))
-    def a_12221211(self):
-        print("El reptil tiene patas y es grande")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = "n", patas = "s", grande = "s", uov = input("¿Tiene el hocico en forma de U o de V? (u/v): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s"), caparazon = L("n"), patas = L("s"), grande = L("s"), uov = L("u")))
-    def a_122212111(self):
-        print("El animal que busca es un CAIMAN")
-        self.declare(Fact(animal = "caiman", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = "n", patas = "s", grande = "s", uov = "u"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s"), caparazon = L("n"), patas = L("s"), grande = L("s"), uov = L("v")))
-    def a_122212112(self):
-        print("El animal que busca es un COCODRILO")
-        self.declare(Fact(animal = "cocodrilo", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = "n", patas = "s", grande = "s", uov = "v"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s"), caparazon = L("n"), patas = L("s"), grande = L("n")))
-    def a_12221212(self):
-        print("El reptil tiene patas, pero no es grande")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = "n", patas = "s", grande = "n", camu = input("¿Puede camuflajearse facilmente y enrollar la cola? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s"), caparazon = L("n"), patas = L("s"), grande = L("n"), camu = L("s")))
-    def a_122212121(self):
-        print("El animal que busca es un CAMALEON")
-        self.declare(Fact(animal = "camaleon", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = "n", patas = "s", grande = "n", camu = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s"), caparazon = L("n"), patas = L("s"), grande = L("n"), camu = L("n")))
-    def a_122212122(self):
-        print("El animal que busca es una IGUANA")
-        self.declare(Fact(animal = "iguana", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = "n", patas = "s", grande = "n", camu = "n"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s"), caparazon = L("n"), patas = L("n")))
-    def a_1222122(self):
-        print("El reptil no tiene patas, es un tipo de serpiente")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = "n", patas = "n", sonido = input("¿Puede emitir sonido con su cola? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s"), caparazon = L("n"), patas = L("n"), sonido = L("s")))
-    def a_12221221(self):
-        print("El animal que busca es una VIBORA DE CASCABEL")
-        self.declare(Fact(animal = "cascabel", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = "n", patas = "n", sonido = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s"), caparazon = L("n"), patas = L("n"), sonido = L("n")))
-    def a_12221222(self):
-        print("La serpiente no emite sonidos con la cola")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = "n", patas = "n", sonido = "n", levan = input("¿Puede mantenerse levantada? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s"), caparazon = L("n"), patas = L("n"), sonido = L("n"), levan = L("s")))
-    def a_122212221(self):
-        print("El animal que busca es una COBRA")
-        self.declare(Fact(animal = "cobra", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = "n", patas = "n", sonido = "n", levan = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("s"), caparazon = L("n"), patas = L("n"), sonido = L("n"), levan = L("n")))
-    def a_122212222(self):
-        print("El animal que busca es una BOA")
-        self.declare(Fact(animal = "boa", extinto = "n", marino = "n", ave = "n", reptil = "s", caparazon = "n", patas = "n", sonido = "n", levan = "n"))
-#NO REPTILES
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n")))
-    def a_12222(self):
-        print("No es un reptil, pero es un terrestre")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = input("¿Tiene pezuñas? (s/n): ")))
-#UNGULADO
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s")))
-    def a_122221(self):
-        print("Es un animal ungulado")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = input("¿Tiene cuernos? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s"), cuernos = L("s")))
-    def a_1222211(self):
-        print("Es un animal ungulado y tiene cuernos")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = "s", nariz = input("¿Tiene los cuernos en la nariz? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s"), cuernos = L("s"), nariz = L("s")))
-    def a_12222111(self):
-        print("El animal que busca es un RINOCERONTE")
-        self.declare(Fact(animal = "rinoceronte", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = "s", nariz = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s"), cuernos = L("s"), nariz = L("n")))
-    def a_12222112(self):
-        print("El animal tiene cuernos pero no en la nariz")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = "s", nariz = "n", ramas = input("¿Sus cuernos parecen ramas? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s"), cuernos = L("s"), nariz = L("n"), ramas = L("s")))
-    def a_122221121(self):
-        print("El animal que busca es un VENADO")
-        self.declare(Fact(animal = "venado", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = "s", nariz = "n", ramas = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s"), cuernos = L("s"), nariz = L("n"), ramas = L("n")))
-    def a_122221122(self):
-        print("El animal que busca es una CABRA")
-        self.declare(Fact(animal = "cabra", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = "s", nariz = "n", ramas = "n"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s"), cuernos = L("n")))
-    def a_1222212(self):
-        print("Es un animal ungulado y no tiene cuernos")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = "n", lana = input("¿Tiene lana? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s"), cuernos = L("n"), lana = L("s")))
-    def a_12222121(self):
-        print("Es un animal ungulado y tiene lana")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = "n", lana = "s", cuello = input("¿Tiene el cuello largo? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s"), cuernos = L("n"), lana = L("s"), cuello = L("s")))
-    def a_122221211(self):
-        print("El animal que busca es una LLAMA")
-        self.declare(Fact(animal = "llama", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = "n", lana = "s", cuello = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s"), cuernos = L("n"), lana = L("s"), cuello = L("n")))
-    def a_122221212(self):
-        print("El animal que busca es una OVEJA")
-        self.declare(Fact(animal = "oveja", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = "n", lana = "s", cuello = "n"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s"), cuernos = L("n"), lana = L("n")))
-    def a_12222122(self):
-        print("Es un animal es ungulado y no tiene lana")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = "n", lana = "n", cuello = input("¿Tiene el cuello largo? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s"), cuernos = L("n"), lana = L("n"), cuello = L("s")))
-    def a_122221221(self):
-        print("El animal que busca es una JIRAFA")
-        self.declare(Fact(animal = "jirafa", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = "n", lana = "n", cuello = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s"), cuernos = L("n"), lana = L("n"), cuello = L("n")))
-    def a_122221222(self):
-        print("El animal no tiene el cuello tan largo")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = "n", lana = "n", cuello = "n", rayas = input("¿Tiene rayas? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s"), cuernos = L("n"), lana = L("n"), cuello = L("n"), rayas = L("s")))
-    def a_1222212221(self):
-        print("El animal que busca es una CEBRA")
-        self.declare(Fact(animal = "cebra", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = "n", lana = "n", cuello = "n", rayas = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("s"), cuernos = L("n"), lana = L("n"), cuello = L("n"), rayas = L("n")))
-    def a_1222212222(self):
-        print("El animal que busca es un CABALLO")
-        self.declare(Fact(animal = "caballo", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "s", cuernos = "n", lana = "n", cuello = "n", rayas = "n"))
-#NO UNGULADO
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("n")))
-    def a_122222(self):
-        print("Es un animal terrestre")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "n", salvaje = input("¿Es salvaje? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("n"), salvaje = L("s")))
-    def a_1222221(self):
-        print("Es un felino")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "n", salvaje = "s", rom = input("¿Tiene rayas o manchas? (r/m): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("n"), salvaje = L("s"), rom = L("r")))
-    def a_12222211(self):
-        print("El animal que busca es un TIGRE")
-        self.declare(Fact(animal = "tigre", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "n", salvaje = "s", rom = "r"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("n"), salvaje = L("s"), rom = L("m")))
-    def a_12222212(self):
-        print("El animal que busca es un LEOPARDO")
-        self.declare(Fact(animal = "leopardo", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "n", salvaje = "s", rom = "m"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("n"), salvaje = L("n")))
-    def a_1222222(self):
-        print("Es un primate")
-        self.declare(Fact(animal = "animal", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "n", salvaje = "n", grande = input("¿Es grande? (s/n): ")))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("n"), salvaje = L("n"), grande = L("s")))
-    def a_12222221(self):
-        print("El animal que busca es un GORILA")
-        self.declare(Fact(animal = "GORILA", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "n", salvaje = "n", grande = "s"))
-
-    @Rule(Fact(animal = L("animal"), extinto = L("n"), marino = L("n"), ave = L("n"), reptil = L("n"), pezuñas = L("n"), salvaje = L("n"), grande = L("n")))
-    def a_12222222(self):
-        print("El animal que busca es un MONO")
-        self.declare(Fact(animal = "mono", extinto = "n", marino = "n", ave = "n", reptil = "n", pezuñas = "n", salvaje = "n", grande = "n"))
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("s"),pilotos=L("s"),meteorologia=L("s")))
+    def a_1104(self):
+        print("CAMBIAR ALERON")
+        self.declare(Fact(falla = "falla", automovil = "n", nuevo="s", pilotos="s",meteorologia = ("s")))
+    
+    @Rule(Fact(falla = L("falla"), automovil = L("n"),nuevo=L("s"),pilotos=L("s"),meteorologia=L("n")))
+    def a_1105(self):
+        print("ACTIVAR ESTABILIZADOR")
+        self.declare(Fact(falla = "falla", automovil = "n", nuevo="s", pilotos="s",meteorologia = ("n")))
