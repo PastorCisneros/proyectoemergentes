@@ -3,7 +3,7 @@ from pyknow import *
 class fallas(KnowledgeEngine):
 
     @Rule(Fact(falla = 'falla' << L("falla")))
-    def a_1 (self, animal):
+    def a_1 (self, falla):
         print(".: SISTEMA EXPERTO DE FALLAS DE TRANSPORTE :.")
         print(" ")
         self.declare(Fact(falla = "falla", automovil = input("¿Es un automovil? (s/n): ")))
@@ -216,7 +216,7 @@ class fallas(KnowledgeEngine):
         self.declare(Fact(falla = "problemasout", automovil = "s", automatico = "n", manejar = ("s"), licencia = ("s"), estadollave = ("s"), gasolina = ("n"), agua = ("s"), aceite=("s"),luces=("s"),carretera=("s"),oscuro=("n")))
 #####################AVION 
     @Rule(Fact(falla = L("falla"), automovil = L("n")))
-    def a_1(self):
+    def a_1456(self):
         print("Es un avion")
         self.declare(Fact(falla = "falla", automovil = "n", nuevo = input("¿Es un avion nuevo? (s/n): ")))
     
@@ -302,3 +302,11 @@ class fallas(KnowledgeEngine):
     def a_1105(self):
         print("ACTIVAR ESTABILIZADOR")
         self.declare(Fact(falla = "falla", automovil = "n", nuevo="s", pilotos="s",meteorologia = ("n")))
+
+mse = fallas()
+mse.reset()
+mse.declare(Fact(
+    falla = "falla"
+))
+mse.run()
+mse.facts
